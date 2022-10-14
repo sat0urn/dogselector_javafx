@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DogSelectorController">
+   <children>
+      <AnchorPane prefHeight="106.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="button_menu" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" style="-fx-background-color: #FF8C00;" text="Menu">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="233.0" layoutY="14.0" text="Dog Selector" textFill="DARKORANGE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="213.0" layoutY="52.0" text="Welcome to DogSelector!">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="70.0" prefHeight="18.0" prefWidth="450.0" text="You need to answer a couple of questions regarding dog behavior">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="264.0" layoutY="88.0" text="Let's start!">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="48.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" layoutX="130.0" layoutY="14.0" text="Do you prefer more active, aggressive or calm dog?">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="rb_active" layoutX="161.0" layoutY="41.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="94.0" text="Active" />
+            <RadioButton fx:id="rb_aggressive" layoutX="256.0" layoutY="41.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="Aggressive" />
+            <RadioButton fx:id="rb_calm" layoutX="369.0" layoutY="41.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="60.0" text="Calm" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="50.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" layoutX="201.0" layoutY="14.0" text="Pick size of dog that you prefer">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="rb_big" layoutX="163.0" layoutY="41.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="94.0" text="Big" />
+            <RadioButton fx:id="rb_medium" layoutX="257.0" layoutY="41.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="109.0" text="Medium" />
+            <RadioButton fx:id="rb_small" layoutX="368.0" layoutY="41.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="60.0" text="Small" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="46.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" layoutX="170.0" layoutY="14.0" text="Do you like street or domestic animal?">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="rb_domestic" layoutX="200.0" layoutY="46.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="Domestic" />
+            <RadioButton fx:id="rb_street" layoutX="318.0" layoutY="46.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="63.0" text="Street" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="106.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" layoutX="173.0" layoutY="14.0" text="Should dog be trained or not trained?">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="button_submit" layoutX="218.0" layoutY="71.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: #FF8C00;" text="Submit">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Button>
+            <RadioButton fx:id="rb_trained" layoutX="198.0" layoutY="40.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="Trained" />
+            <RadioButton fx:id="rb_no_trained" layoutX="319.0" layoutY="40.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="NoTrained" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
