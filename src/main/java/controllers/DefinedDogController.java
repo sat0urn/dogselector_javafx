@@ -60,7 +60,7 @@ public class DefinedDogController implements Initializable {
 
         button_yes.setOnAction(e -> {
             String full_name = user.getFirstname() + " " + user.getLastname();
-            if (ClientDBUtils.hasThatDog(full_name, dog.getDogSpeecy(), user.getLogin())) {
+            if (!ClientDBUtils.hasThatDog(full_name, dog.getDogSpeecy(), user.getLogin())) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setContentText("You already have that dog");
                 alert.show();
@@ -72,7 +72,6 @@ public class DefinedDogController implements Initializable {
         button_no.setOnAction(e -> {
             DBUtils.changeScene(e, "user-menu.fxml", "Menu", user, null);
         });
-
     }
 
     public void setUserInfo(User user, Dog dog) {

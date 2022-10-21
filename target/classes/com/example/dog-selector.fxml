@@ -11,12 +11,12 @@
    <children>
       <AnchorPane prefHeight="106.0" prefWidth="600.0">
          <children>
-            <Button fx:id="button_menu" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" style="-fx-background-color: #FF8C00;" text="Menu">
+            <Button fx:id="button_menu" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" style="-fx-background-color: #4C799A;" text="Menu" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </Button>
-            <Label layoutX="233.0" layoutY="14.0" text="Dog Selector" textFill="DARKORANGE">
+            <Label layoutX="233.0" layoutY="14.0" text="Dog Selector" textFill="#4c799a">
                <font>
                   <Font name="Arial Rounded MT Bold" size="21.0" />
                </font>
@@ -80,7 +80,7 @@
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="button_submit" layoutX="218.0" layoutY="71.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: #FF8C00;" text="Submit">
+            <Button fx:id="button_submit" layoutX="218.0" layoutY="71.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: #4C799A;" text="Submit" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>

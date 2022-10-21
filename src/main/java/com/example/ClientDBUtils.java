@@ -102,10 +102,7 @@ public class ClientDBUtils {
                      )
         ) {
             ResultSet rs = psCheck.executeQuery();
-            if (!rs.isBeforeFirst()) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setContentText("There is no such client with that specific dog!");
-                alert.show();
+            if (rs.isBeforeFirst()) {
                 return !gate;
             } else {
                 while (rs.next()) {
@@ -160,5 +157,21 @@ public class ClientDBUtils {
             e.printStackTrace();
         }
         return allDogBreeds;
+    }
+
+    public static String getMostPopularDog() {
+        String mostPopularDog = null;
+        try (Connection con = DriverManager.getConnection(DBConfig.URL, DBConfig.NAME, DBConfig.PASSWORD);
+             PreparedStatement st = con.prepareStatement(
+                     "SELECT dog_speecy, COUNT(dog_speecy) AS dog_count FROM clients " +
+                             "GROUP BY dog_speecy ORDER BY dog_count DESC LIMIT 1"
+             )) {
+            ResultSet rs = st.executeQuery();
+            while (rs.next())
+                mostPopularDog = "Most popular dog by choice - " + rs.getString("dog_speecy");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return mostPopularDog;
     }
 }

@@ -47,12 +47,18 @@ public class DogAcquisition implements Observable {
 
     @Override
     public String[] notifyObserver(String observerName) {
-        String[] allNotifies = new String[observers.toArray().length];
-        int c = 0;
+        String[] allNotifies;
+        int length = 0, i = 0;
+        for (Observer observer : observers)
+            if (observer.getName().equals(observerName))
+                length++;
+
+
+        allNotifies = new String[length];
         for (Observer observer : observers) {
             if (observer.getName().equals(observerName)) {
-                allNotifies[c] = observer.update();
-                c++;
+                allNotifies[i] = observer.update();
+                i++;
             }
         }
         return allNotifies;

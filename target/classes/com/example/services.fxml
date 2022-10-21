@@ -10,34 +10,34 @@
 <AnchorPane prefHeight="400.0" prefWidth="503.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ServicesController">
    <children>
       <Label layoutX="286.0" layoutY="98.0" />
-      <Label layoutX="232.0" layoutY="24.0" text="Dog Services" textFill="DARKORANGE">
+      <Label layoutX="232.0" layoutY="24.0" text="Dog Services" textFill="#4c799a">
          <font>
             <Font name="Arial Rounded MT Bold" size="21.0" />
          </font>
       </Label>
-      <AnchorPane layoutY="78.0" prefHeight="39.0" prefWidth="600.0" style="-fx-border-color: black; -fx-border-width: 1; -fx-background-color: #ff8c00;">
+      <AnchorPane layoutY="78.0" prefHeight="39.0" prefWidth="600.0" style="-fx-border-color: black; -fx-border-width: 1; -fx-background-color: #4C799A;">
          <children>
-            <Label alignment="CENTER" layoutX="36.0" layoutY="9.0" text="1) Deprivation of reproductive function">
+            <Label alignment="CENTER" layoutX="36.0" layoutY="9.0" text="1) Deprivation of reproductive function" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </Label>
-            <RadioButton fx:id="rb_yes_1" layoutX="361.0" layoutY="9.0" mnemonicParsing="false" text="Yes" />
-            <RadioButton fx:id="rb_no_1" layoutX="479.0" layoutY="9.0" mnemonicParsing="false" text="No" />
+            <RadioButton fx:id="rb_yes_1" layoutX="361.0" layoutY="9.0" mnemonicParsing="false" text="Yes" textFill="WHITE" />
+            <RadioButton fx:id="rb_no_1" layoutX="479.0" layoutY="9.0" mnemonicParsing="false" text="No" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="123.0" prefHeight="39.0" prefWidth="600.0" style="-fx-border-color: black; -fx-border-width: 1; -fx-background-color: #ff8c00;">
+      <AnchorPane layoutY="123.0" prefHeight="39.0" prefWidth="600.0" style="-fx-border-color: black; -fx-border-width: 1; -fx-background-color: #4C799A;">
          <children>
-            <Label alignment="CENTER" layoutX="36.0" layoutY="9.0" text="2) Vaccination">
+            <Label alignment="CENTER" layoutX="36.0" layoutY="9.0" text="2) Vaccination" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </Label>
-            <RadioButton fx:id="rb_yes_2" layoutX="361.0" layoutY="9.0" mnemonicParsing="false" text="Yes" />
-            <RadioButton fx:id="rb_no_2" layoutX="479.0" layoutY="9.0" mnemonicParsing="false" text="No" />
+            <RadioButton fx:id="rb_yes_2" layoutX="361.0" layoutY="9.0" mnemonicParsing="false" text="Yes" textFill="WHITE" />
+            <RadioButton fx:id="rb_no_2" layoutX="479.0" layoutY="9.0" mnemonicParsing="false" text="No" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <Button fx:id="button_submit" layoutX="238.0" layoutY="186.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" style="-fx-background-color: #ff8c00; -fx-border-color: black;" text="Submit">
+      <Button fx:id="button_submit" layoutX="238.0" layoutY="186.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" style="-fx-background-color: #4C799A; -fx-border-color: black;" text="Submit" textFill="WHITE">
          <font>
             <Font name="Arial Rounded MT Bold" size="14.0" />
          </font>
@@ -49,7 +49,7 @@
          </font>
       </Label>
       <Line fx:id="line_between_2" endX="402.5999755859375" endY="-42.19999694824219" layoutX="190.0" layoutY="415.0" startX="-183.79998779296875" startY="-42.19999694824219" />
-      <Button fx:id="button_menu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" style="-fx-background-color: #FF8C00;" text="Menu">
+      <Button fx:id="button_menu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" style="-fx-background-color: #4C799A;" text="Menu" textFill="WHITE">
          <font>
             <Font name="Arial Rounded MT Bold" size="14.0" />
          </font>

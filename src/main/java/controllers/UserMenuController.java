@@ -2,17 +2,15 @@ package controllers;
 
 import FactoryPattern.*;
 import ObserverPattern.DogAcquisition;
+import SpeciesOfDogs.MostPopularDog;
 import com.example.ClientDBUtils;
 import com.example.DBUtils;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import models.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -61,6 +59,9 @@ public class UserMenuController implements Initializable {
     @FXML
     private Button button_submit;
 
+    @FXML
+    private TextField tf_most_popular_dog;
+
     private User user;
 
     private String dogBreed = null;
@@ -73,8 +74,14 @@ public class UserMenuController implements Initializable {
             new Regularhair().getHairType()
     };
 
+    private boolean wasClicked = false;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        MostPopularDog mostPopularDog = MostPopularDog.getInstance(ClientDBUtils.getMostPopularDog());
+
+        tf_most_popular_dog.setText(mostPopularDog.getPopularDog());
 
         cb_dogs.getItems().addAll(allDogBreeds);
         cb_hair_types.getItems().addAll(allHairTypes);
@@ -86,30 +93,34 @@ public class UserMenuController implements Initializable {
         ap_dog_hair.setVisible(false);
 
         button_dog_selector.setOnAction(e -> {
-           DBUtils.changeScene(e, "dog-selector.fxml", "Dog Selector", user, null);
+            DBUtils.changeScene(e, "dog-selector.fxml", "Dog Selector", user, null);
         });
 
         button_messages.setOnAction(e -> {
-            String full_name = user.getFirstname() + " " + user.getLastname();
+            if (!wasClicked) {
+                DogAcquisition dogAcquisition = new DogAcquisition();
+                String full_name = user.getFirstname() + " " + user.getLastname();
+                String[] allNotifies = dogAcquisition.notifyObserver(full_name);
 
-            DogAcquisition dogAcquisition = new DogAcquisition();
-            String[] allNotifies = dogAcquisition.notifyObserver(full_name);
+                String[] copyAllNotifies = new String[allNotifies.length];
+                int c = 1, i = 0;
 
-            String[] copyAllNotifies = new String[allNotifies.length];
-            int c = 1, i = 0;
+                for (String notify : allNotifies) {
+                    copyAllNotifies[i] = (c + ". " + notify);
+                    c++;
+                    i++;
+                }
 
-            for (String notify : allNotifies) {
-                copyAllNotifies[i] = (c + ". " + notify);
-                c++; i++;
+                lv_messages.getItems().addAll(copyAllNotifies);
             }
-
-            lv_messages.getItems().addAll(copyAllNotifies);
-
             lv_messages.setVisible(true);
             button_messages.setDisable(true);
             button_dog_hair_setter.setDisable(false);
             ap_dog_hair.setVisible(false);
+
+            wasClicked = true;
         });
+
 
         button_dog_hair_setter.setOnAction(e -> {
             ap_dog_hair.setVisible(true);

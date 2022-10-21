@@ -14,12 +14,12 @@
    <children>
       <ButtonBar layoutX="173.0" layoutY="81.0" prefHeight="35.0" prefWidth="251.0">
          <buttons>
-            <Button fx:id="button_messages" mnemonicParsing="false" prefHeight="27.0" prefWidth="111.0" style="-fx-background-color: #FF8C00;" text="Messages">
+            <Button fx:id="button_messages" mnemonicParsing="false" prefHeight="27.0" prefWidth="111.0" style="-fx-background-color: #4C799A;" text="Messages" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="button_logout" mnemonicParsing="false" prefHeight="27.0" prefWidth="111.0" style="-fx-background-color: #FF8C00;" text="Logout">
+            <Button fx:id="button_logout" mnemonicParsing="false" prefHeight="27.0" prefWidth="111.0" style="-fx-background-color: #4C799A;" text="Logout" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
@@ -33,18 +33,18 @@
       </Label>
       <ListView fx:id="lv_messages" layoutX="10.0" layoutY="132.0" prefHeight="129.0" prefWidth="578.0" />
       <TextField fx:id="tf_client_id" layoutX="128.0" layoutY="313.0" prefHeight="18.0" prefWidth="30.0" promptText="id" />
-      <Label fx:id="label_client_id" layoutX="38.0" layoutY="315.0" text="Client id :" textFill="DARKORANGE" underline="true">
+      <Label fx:id="label_client_id" layoutX="38.0" layoutY="315.0" text="Client id :" textFill="#4c799a" underline="true">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="label_date" layoutX="199.0" layoutY="314.0" text="Date :" textFill="DARKORANGE" underline="true">
+      <Label fx:id="label_date" layoutX="199.0" layoutY="314.0" text="Date :" textFill="#4c799a" underline="true">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Label>
       <DatePicker fx:id="dp_date" layoutX="257.0" layoutY="313.0" promptText="2001-01-01" />
-      <Button fx:id="button_submit" layoutX="461.0" layoutY="312.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #ff8c00;" text="Submit">
+      <Button fx:id="button_submit" layoutX="461.0" layoutY="312.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #4C799A;" text="Submit" textFill="WHITE">
          <font>
             <Font name="Arial Rounded MT Bold" size="12.0" />
          </font>
