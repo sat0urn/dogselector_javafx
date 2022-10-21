@@ -13,4 +13,5 @@ module com.example.dog_selector_javafx {
     exports DecoratorPattern;
     exports Behaviors_and_Realizations;
     exports SpeciesOfDogs;
+    exports SingletonPattern;
 }

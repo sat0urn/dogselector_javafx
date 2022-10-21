@@ -2,7 +2,7 @@ package controllers;
 
 import FactoryPattern.*;
 import ObserverPattern.DogAcquisition;
-import SpeciesOfDogs.MostPopularDog;
+import SingletonPattern.MostPopularDog;
 import com.example.ClientDBUtils;
 import com.example.DBUtils;
 import javafx.scene.control.*;
@@ -67,7 +67,7 @@ public class UserMenuController implements Initializable {
     private String dogBreed = null;
     private String hairType = null;
 
-    private String[] allDogBreeds = ClientDBUtils.getAllDogBreeds();
+    private String[] allDogBreeds = null;
     private String[] allHairTypes = {
             new Longhair().getHairType(),
             new Shorthair().getHairType(),
@@ -82,12 +82,6 @@ public class UserMenuController implements Initializable {
         MostPopularDog mostPopularDog = MostPopularDog.getInstance(ClientDBUtils.getMostPopularDog());
 
         tf_most_popular_dog.setText(mostPopularDog.getPopularDog());
-
-        cb_dogs.getItems().addAll(allDogBreeds);
-        cb_hair_types.getItems().addAll(allHairTypes);
-
-        cb_dogs.setValue(allDogBreeds[0]);
-        cb_hair_types.setValue(allHairTypes[0]);
 
         lv_messages.setVisible(false);
         ap_dog_hair.setVisible(false);
@@ -123,6 +117,14 @@ public class UserMenuController implements Initializable {
 
 
         button_dog_hair_setter.setOnAction(e -> {
+            allDogBreeds = ClientDBUtils.getAllDogBreeds(user);
+
+            cb_dogs.setValue(allDogBreeds[0]);
+            cb_hair_types.setValue(allHairTypes[0]);
+
+            cb_dogs.getItems().addAll(allDogBreeds);
+            cb_hair_types.getItems().addAll(allHairTypes);
+
             ap_dog_hair.setVisible(true);
             button_messages.setDisable(false);
             button_dog_hair_setter.setDisable(true);
@@ -135,7 +137,12 @@ public class UserMenuController implements Initializable {
 
             Hairtype dogHairType = HairTypeFactory.getHairType(dogBreed, hairType);
 
-            label_dog_hair_type.setText(dogHairType.getDogAndHairType());
+            boolean alreadyHasDogHairType = ClientDBUtils.setDogHairType(user.getLogin(), dogBreed, hairType);
+
+            if (alreadyHasDogHairType)
+                label_dog_hair_type.setText(dogHairType.getDogAndHairType());
+            else
+                label_dog_hair_type.setText("You have some issues, try again!");
         });
 
         button_logout.setOnAction(e -> {

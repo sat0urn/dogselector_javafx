@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ObserverPattern.*;
+import models.User;
 
 public class ClientDBUtils {
 
@@ -141,22 +142,63 @@ public class ClientDBUtils {
         return dog_name;
     }
 
-    public static String[] getAllDogBreeds() {
-        String[] allDogBreeds = new String[36];
+    public static String[] getAllDogBreeds(User user) {
+        String[] allDogBreeds = null;
         try (Connection con = DriverManager.getConnection(DBConfig.URL, DBConfig.NAME, DBConfig.PASSWORD);
-             Statement st = con.createStatement()) {
+             PreparedStatement st = con.prepareStatement(
+                     "SELECT dog_speecy FROM clients WHERE login = \'" + user.getLogin() + "\'"
+             );
+             PreparedStatement dogsCounterSt = con.prepareStatement(
+                     "SELECT COUNT(dog_buyer) AS number_of_dogs FROM clients WHERE login = \'" + user.getLogin() + "\'"
+             )) {
 
-            ResultSet rs = st.executeQuery("SELECT * FROM dog_breeds");
-            int i = 0;
+            ResultSet rs = st.executeQuery();
+            ResultSet dogsCounterRs = dogsCounterSt.executeQuery();
+
+            int i = 0, length = 0;
+            while (dogsCounterRs.next()) length = Integer.parseInt(dogsCounterRs.getString("number_of_dogs"));
+
+            allDogBreeds = new String[length];
 
             while (rs.next()) {
-                allDogBreeds[i] = rs.getString("dog_name");
+                allDogBreeds[i] = rs.getString("dog_speecy");
                 i++;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return allDogBreeds;
+    }
+
+    public static boolean setDogHairType(String login, String dogBreed, String hairType) {
+        try (Connection con = DriverManager.getConnection(DBConfig.URL, DBConfig.NAME, DBConfig.PASSWORD);
+             Statement st = con.createStatement()) {
+
+            if (dogBreed == null) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("You don't have any dog! Go to Dog Selector!");
+                alert.show();
+                return false;
+            }
+
+            ResultSet rs = st.executeQuery("SELECT * FROM clients WHERE login = \'" + login + "\' AND dog_speecy = \'" + dogBreed + "\'");
+
+            while (rs.next()) {
+                if (!(rs.getString("hair_type") == null)) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setContentText("You already have a hair type for that dog!");
+                    alert.show();
+                    return false;
+                }
+            }
+
+            st.executeUpdate("UPDATE clients SET hair_type = \'" + hairType +
+                    "\' WHERE dog_speecy = \'" + dogBreed + "\' AND login = \'" + login + "\'");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
     public static String getMostPopularDog() {

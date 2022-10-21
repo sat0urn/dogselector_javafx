@@ -1,4 +1,4 @@
-package SpeciesOfDogs;
+package SingletonPattern;
 
 public class MostPopularDog {
     private String popularDog;
