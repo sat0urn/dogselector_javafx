@@ -1,7 +1,5 @@
 package models;
 
-import java.lang.reflect.Array;
-
 public class User {
     private String firstname;
     private String lastname;

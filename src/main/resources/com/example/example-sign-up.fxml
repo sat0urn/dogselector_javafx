@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom, #6da1c6, #4C799A, #365a73);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpController">
+   <children>
+      <AnchorPane layoutX="273.0" layoutY="93.0" prefHeight="313.0" prefWidth="237.0" style="-fx-background-color: linear-gradient(to bottom, #6da1c6, #4C799A, #365a73); -fx-background-radius: 10px;">
+         <effect>
+            <DropShadow height="65.45" offsetY="10.0" radius="26.3775" width="42.06" />
+         </effect>
+         <children>
+            <Label alignment="CENTER" layoutX="8.0" layoutY="21.0" prefHeight="34.0" prefWidth="220.0" style="-fx-padding: 5;" text=" Sign Up" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Britannic Bold" size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_login" layoutX="41.0" layoutY="160.0" prefHeight="23.0" prefWidth="154.0" promptText="Login" style="-fx-padding: 5;">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="tf_lastname" layoutX="41.0" layoutY="121.0" prefHeight="23.0" prefWidth="154.0" promptText="Lastname" style="-fx-padding: 5;">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="tf_firstname" layoutX="41.0" layoutY="80.0" prefHeight="23.0" prefWidth="154.0" promptText="Firstname" style="-fx-padding: 5;">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </TextField>
+            <Button fx:id="button_sign_up" layoutX="67.0" layoutY="240.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="104.0" style="-fx-background-color: white;" text="Sign Up" textFill="#4c799a">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Label layoutX="50.0" layoutY="275.0" prefHeight="15.0" prefWidth="104.0" text="Already have an account?" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="8.0" />
+               </font>
+            </Label>
+            <Button fx:id="button_sign_in" layoutX="148.0" layoutY="273.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="44.0" style="-fx-background-color: transparency;" text="Sign In" textFill="WHITE" underline="true">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
+            <PasswordField fx:id="pf_password" layoutX="41.0" layoutY="199.0" prefHeight="23.0" prefWidth="154.0" promptText="Password">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </PasswordField>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

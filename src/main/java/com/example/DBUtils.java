@@ -2,6 +2,7 @@ package com.example;
 
 import SpeciesOfDogs.Dog;
 import controllers.*;
+import models.Client;
 import models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -12,11 +13,12 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.*;
 
 public class DBUtils {
 
-    public static String[] getAdminMessages(String login) {
+    public static String[] getAdminMessages() {
         String[] messages = null;
         try (Connection con = DriverManager.getConnection(DBConfig.URL, DBConfig.NAME, DBConfig.PASSWORD);
              Statement st = con.createStatement()) {
@@ -93,7 +95,7 @@ public class DBUtils {
         }
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle(title);
-        stage.setScene(new Scene(root, 600, 400));
+        stage.setScene(new Scene(root, 800, 500));
         stage.show();
     }
 
@@ -120,7 +122,7 @@ public class DBUtils {
 
                 User user = findUserByLogin(login);
 
-                changeScene(event, "user-menu.fxml", "Menu", user, null);
+                changeScene(event, "example-user-menu.fxml", "Menu", user, null);
             }
 
         } catch (SQLException e) {
@@ -142,25 +144,25 @@ public class DBUtils {
                 alert.show();
             } else {
                 while (rs.next()) {
-                        if (rs.getString("login").equals(login)) {
-                            if (rs.getString("password").equals(password)) {
-                                if (rs.getString("role").equals("ADMIN")) {
-                                    User user = findUserByLogin(login);
-                                    changeScene(event, "admin-menu.fxml", "Admin Menu", user, null);
-                                } else {
-                                    User user = findUserByLogin(login);
-                                    changeScene(event, "user-menu.fxml", "WELCOME!", user, null);
-                                }
+                    if (rs.getString("login").equals(login)) {
+                        if (rs.getString("password").equals(password)) {
+                            if (rs.getString("role").equals("ADMIN")) {
+                                User user = findUserByLogin(login);
+                                changeScene(event, "example-admin-menu.fxml", "Admin Menu", user, null);
                             } else {
-                                Alert alert = new Alert(Alert.AlertType.ERROR);
-                                alert.setContentText("Password did not match!");
-                                alert.show();
+                                User user = findUserByLogin(login);
+                                changeScene(event, "example-user-menu.fxml", "WELCOME!", user, null);
                             }
                         } else {
                             Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setContentText("This login is not registered!");
+                            alert.setContentText("Password did not match!");
                             alert.show();
                         }
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText("This login is not registered!");
+                        alert.show();
+                    }
                 }
             }
 
@@ -169,13 +171,12 @@ public class DBUtils {
         }
     }
 
-    public static void sendMessageToAdmin(User user, String dogBreed, String description, double cost) {
+    public static void sendMessageToAdmin(Client client, String dogBreed, String description, double cost) {
         try (Connection con = DriverManager.getConnection(DBConfig.URL, DBConfig.NAME, DBConfig.PASSWORD);
              Statement st = con.createStatement()) {
             String message =
-                    user.getFirstname() + " " +
-                            user.getLastname() + "/" +
-                            user.getLogin() + "/" +
+                    client.getName() + "/" +
+                            client.getLogin() + "/" +
                             dogBreed + "/" +
                             description + "/" +
                             cost;

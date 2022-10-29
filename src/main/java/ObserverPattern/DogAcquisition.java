@@ -1,7 +1,11 @@
 package ObserverPattern;
 
+import StatePattern.AcquisitionSettingTime;
+import StatePattern.SettedState;
+import StatePattern.UnsettedState;
 import com.example.ClientDBUtils;
 import javafx.scene.control.Alert;
+import models.Client;
 
 import java.util.List;
 
@@ -15,13 +19,14 @@ public class DogAcquisition implements Observable {
 
     @Override
     public void registerObserver(Observer o) {
+        AcquisitionSettingTime acquisitionSettingTime = new AcquisitionSettingTime((Client) o);
+        acquisitionSettingTime.setState(new SettedState(acquisitionSettingTime));
         for (Observer observer : observers) {
             if (observer.getName().equals(o.getName()) &&
                     observer.getDogBreed().equals(o.getDogBreed()) &&
                     observer.getLogin().equals(o.getLogin())) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setContentText("This client is already has that dog!");
-                alert.show();
+                acquisitionSettingTime.setDateToClient();
+                System.out.println("State was changed!");
                 return;
             }
         }

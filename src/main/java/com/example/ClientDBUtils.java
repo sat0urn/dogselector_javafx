@@ -1,5 +1,6 @@
 package com.example;
 
+import SpeciesOfDogs.Dog;
 import javafx.scene.control.Alert;
 import models.Client;
 

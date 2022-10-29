@@ -1,6 +1,7 @@
 package controllers;
 
 import com.example.DBUtils;
+import com.example.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -26,13 +27,12 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         button_sign_in.setOnAction(e -> {
             DBUtils.logInUser(e, tf_login.getText(), pf_password.getText());
         });
 
         button_sign_up.setOnAction(e -> {
-            DBUtils.changeScene(e, "sign-up.fxml", "Registration", null, null);
+            DBUtils.changeScene(e, "example-sign-up.fxml", "Registration", null, null);
         });
     }
 }

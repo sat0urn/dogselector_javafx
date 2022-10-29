@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
+            prefWidth="800.0" style="-fx-background-color: #4C799A;" stylesheets="@css/styles.css"
+            xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.ServicesController">
+    <children>
+        <GridPane prefHeight="60.0" prefWidth="800.0"
+                  style="-fx-padding: 8px 16px; -fx-background-color: rgba(49, 49, 49, 0.9);">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Button fx:id="button_dog_selector" mnemonicParsing="false" prefHeight="74.0" prefWidth="202.0"
+                        style="-fx-background-color: transparent;" text="Selector" textFill="WHITE"
+                        GridPane.columnIndex="1">
+                    <font>
+                        <Font name="Arial Unicode MS" size="17.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="DEFAULT"/>
+                    </cursor>
+                </Button>
+                <Button fx:id="button_messages" mnemonicParsing="false" prefHeight="70.0" prefWidth="206.0"
+                        style="-fx-background-color: transparent;" text="Messages" textFill="WHITE"
+                        GridPane.columnIndex="2">
+                    <font>
+                        <Font name="Arial Unicode MS" size="17.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="DEFAULT"/>
+                    </cursor>
+                </Button>
+                <Button fx:id="button_logout" mnemonicParsing="false" prefHeight="44.0" prefWidth="184.0"
+                        style="-fx-background-color: transparent;" text="Logout" textFill="WHITE"
+                        GridPane.columnIndex="4">
+                    <font>
+                        <Font name="Arial Unicode MS" size="17.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="DEFAULT"/>
+                    </cursor>
+                </Button>
+                <Button fx:id="button_dog_hair_setter" mnemonicParsing="false" prefHeight="74.0" prefWidth="202.0"
+                        style="-fx-background-color: transparent;" text="Hair Setter" textFill="WHITE"
+                        GridPane.columnIndex="3">
+                    <font>
+                        <Font name="Arial Unicode MS" size="17.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="DEFAULT"/>
+                    </cursor>
+                </Button>
+                <Button fx:id="button_menu" mnemonicParsing="false" prefHeight="46.0" prefWidth="139.0"
+                        style="-fx-background-color: transparent; -fx-border-insets: 0; -fx-padding: 0;">
+                    <graphic>
+                        <ImageView fitHeight="48.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@pictures/websites/balto.jpg"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </GridPane>
+        <Label layoutX="159.0" layoutY="112.0" text="You can also get also additional services for your lovely dog!"
+               textFill="WHITE">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+        <Label layoutX="157.0" layoutY="172.0" text="Deprivation of reproducive function?" textFill="WHITE">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Label>
+        <RadioButton fx:id="rb_yes_1" layoutX="472.0" layoutY="175.0" mnemonicParsing="false" text="Yes"
+                     textFill="WHITE">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </RadioButton>
+        <RadioButton fx:id="rb_yes_2" layoutX="472.0" layoutY="227.0" mnemonicParsing="false" text="Yes"
+                     textFill="WHITE">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </RadioButton>
+        <Label layoutX="158.0" layoutY="224.0" text="Do you want to vaccinate your dog?" textFill="WHITE">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Label>
+        <RadioButton fx:id="rb_no_1" layoutX="594.0" layoutY="175.0" mnemonicParsing="false" text="No" textFill="WHITE">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </RadioButton>
+        <RadioButton fx:id="rb_no_2" layoutX="594.0" layoutY="227.0" mnemonicParsing="false" text="No" textFill="WHITE">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </RadioButton>
+        <Line endX="251.4000244140625" endY="0.20001220703125" layoutX="391.0" layoutY="139.0" startX="-235.0"
+              startY="0.20001220703125" style="-fx-fill: rgba(49, 49, 49, 0.9);"/>
+        <Button fx:id="button_submit" layoutX="332.0" layoutY="427.0" mnemonicParsing="false" prefHeight="44.0"
+                prefWidth="137.0" style="-fx-background-color: black;" text="SUBMIT" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="15.0"/>
+            </font>
+        </Button>
+        <Label fx:id="label_services" layoutX="107.0" layoutY="305.0" prefHeight="94.0" prefWidth="587.0"
+               textFill="WHITE">
+            <font>
+                <Font name="System Italic" size="17.0"/>
+            </font>
+        </Label>
+        <Line fx:id="line_between_1" endX="308.199951171875" endY="1.0" layoutX="386.0" layoutY="304.0" startX="-279.0"
+              startY="1.0"/>
+        <Line fx:id="line_between_2" endX="309.199951171875" endY="3.0517578125E-5" layoutX="383.0" layoutY="399.0"
+              startX="-278.0" startY="3.0517578125E-5"/>
+    </children>
+</AnchorPane>

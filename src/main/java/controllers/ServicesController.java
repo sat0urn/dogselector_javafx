@@ -1,12 +1,12 @@
 package controllers;
 
 import DecoratorPattern.DepRecFunc;
-import DecoratorPattern.DogServices;
 import DecoratorPattern.Grafted;
 import DecoratorPattern.SelectedDog;
 import DecoratorPattern.SelectodDogs.*;
 import SpeciesOfDogs.Dog;
-import com.example.ClientDBUtils;
+import StatePattern.AcquisitionSettingTime;
+import StatePattern.SettedState;
 import com.example.DBUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +21,20 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ServicesController implements Initializable {
+
+    // MENU
+    @FXML
+    private Button button_dog_selector;
+
+    @FXML
+    private Button button_messages;
+
+    @FXML
+    private Button button_logout;
+
+    @FXML
+    private Button button_dog_hair_setter;
+    //
 
     @FXML
     private RadioButton rb_yes_1;
@@ -47,6 +61,9 @@ public class ServicesController implements Initializable {
     @FXML
     private Button button_menu;
 
+    @FXML
+    private Label label_dog_cost;
+
     private User user;
 
     private Dog dog;
@@ -67,6 +84,11 @@ public class ServicesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        button_dog_selector.setDisable(true);
+        button_messages.setDisable(true);
+        button_dog_hair_setter.setDisable(true);
+
         line_between_1.setVisible(false);
         line_between_2.setVisible(false);
         label_services.setVisible(false);
@@ -89,8 +111,13 @@ public class ServicesController implements Initializable {
                     currentSelectedDog = selectedDog;
                 }
             }
-            if (rb_yes_1.isSelected()) currentSelectedDog = new DepRecFunc(currentSelectedDog);
-            if (rb_yes_2.isSelected()) currentSelectedDog = new Grafted(currentSelectedDog);
+            if (rb_yes_1.isSelected())
+                currentSelectedDog = new DepRecFunc(currentSelectedDog);
+
+            if (rb_yes_2.isSelected())
+                currentSelectedDog = new Grafted(currentSelectedDog);
+
+            System.out.println(currentSelectedDog.getDescription());
 
             if (rb_yes_2.isSelected() || rb_yes_1.isSelected()) {
                 label_services.setText("Your services: " + currentSelectedDog.getDescription() + "\n\n" +
@@ -108,7 +135,16 @@ public class ServicesController implements Initializable {
                     "(Check your messages)");
             alert.show();
 
-            DBUtils.sendMessageToAdmin(user, dog.getDogSpeecy(), currentSelectedDog.getDescription(), currentSelectedDog.cost());
+            Client client = new Client(
+                    user.getFirstname() + " " + user.getLastname(),
+                    user.getLogin(),
+                    dog.getDogSpeecy(),
+                    currentSelectedDog.getDescription(),
+                    currentSelectedDog.cost()
+                    );
+
+            AcquisitionSettingTime acquisitionSettingTime = new AcquisitionSettingTime(client);
+            acquisitionSettingTime.setDateToClient();
 
             button_menu.setVisible(true);
             line_between_1.setVisible(true);
@@ -119,7 +155,11 @@ public class ServicesController implements Initializable {
         });
 
         button_menu.setOnAction(e -> {
-            DBUtils.changeScene(e, "user-menu.fxml", "Menu", user, null);
+            DBUtils.changeScene(e, "example-user-menu.fxml", "Menu", user, null);
+        });
+
+        button_logout.setOnAction(e -> {
+            DBUtils.changeScene(e, "example-sign-in.fxml", "Log In", null, null);
         });
     }
 

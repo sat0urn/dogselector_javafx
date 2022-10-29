@@ -5,12 +5,13 @@ import ObserverPattern.DogAcquisition;
 import SingletonPattern.MostPopularDog;
 import com.example.ClientDBUtils;
 import com.example.DBUtils;
+import com.example.Main;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import models.User;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,9 +20,6 @@ public class UserMenuController implements Initializable {
 
     // MENU
     @FXML
-    private Label label_welcome;
-
-    @FXML
     private Button button_dog_selector;
 
     @FXML
@@ -29,14 +27,22 @@ public class UserMenuController implements Initializable {
 
     @FXML
     private Button button_logout;
+    //
+
+    @FXML
+    private Button button_dog_hair_setter;
 
     // MESSAGES
     @FXML
     private ListView<String> lv_messages;
 
-    // DOG HAIR SETTER
     @FXML
-    private Button button_dog_hair_setter;
+    private AnchorPane ap_welcome_labels;
+
+    @FXML
+    private AnchorPane ap_messages_hair_setter;
+
+    // DOG HAIR SETTER
 
     @FXML
     private AnchorPane ap_dog_hair;
@@ -83,11 +89,10 @@ public class UserMenuController implements Initializable {
 
         tf_most_popular_dog.setText(mostPopularDog.getPopularDog());
 
-        lv_messages.setVisible(false);
-        ap_dog_hair.setVisible(false);
+        ap_messages_hair_setter.setVisible(false);
 
         button_dog_selector.setOnAction(e -> {
-            DBUtils.changeScene(e, "dog-selector.fxml", "Dog Selector", user, null);
+            DBUtils.changeScene(e, "example-dog-selector.fxml", "Dog Selector", user, null);
         });
 
         button_messages.setOnAction(e -> {
@@ -104,9 +109,12 @@ public class UserMenuController implements Initializable {
                     c++;
                     i++;
                 }
-
                 lv_messages.getItems().addAll(copyAllNotifies);
             }
+
+            ap_welcome_labels.setVisible(false);
+
+            ap_messages_hair_setter.setVisible(true);
             lv_messages.setVisible(true);
             button_messages.setDisable(true);
             button_dog_hair_setter.setDisable(false);
@@ -119,16 +127,24 @@ public class UserMenuController implements Initializable {
         button_dog_hair_setter.setOnAction(e -> {
             allDogBreeds = ClientDBUtils.getAllDogBreeds(user);
 
-            cb_dogs.setValue(allDogBreeds[0]);
-            cb_hair_types.setValue(allHairTypes[0]);
+            if (allDogBreeds.length == 0) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("You don't have any dogs!");
+                alert.show();
+            } else {
+                cb_dogs.setValue(allDogBreeds[0]);
+                cb_hair_types.setValue(allHairTypes[0]);
 
-            cb_dogs.getItems().addAll(allDogBreeds);
-            cb_hair_types.getItems().addAll(allHairTypes);
+                cb_dogs.getItems().addAll(allDogBreeds);
+                cb_hair_types.getItems().addAll(allHairTypes);
 
-            ap_dog_hair.setVisible(true);
-            button_messages.setDisable(false);
-            button_dog_hair_setter.setDisable(true);
-            lv_messages.setVisible(false);
+                ap_welcome_labels.setVisible(false);
+
+                ap_dog_hair.setVisible(true);
+                button_messages.setDisable(false);
+                button_dog_hair_setter.setDisable(true);
+                lv_messages.setVisible(false);
+            }
         });
 
         button_submit.setOnAction(e -> {
@@ -146,12 +162,11 @@ public class UserMenuController implements Initializable {
         });
 
         button_logout.setOnAction(e -> {
-            DBUtils.changeScene(e, "main.fxml", "Log In", null, null);
+            DBUtils.changeScene(e, "example-sign-in.fxml", "Log In", null, null);
         });
     }
 
     public void setUserInfo(User user) {
         this.user = user;
-        label_welcome.setText("Welcome " + user.getFirstname() + " " + user.getLastname() + "!");
     }
 }

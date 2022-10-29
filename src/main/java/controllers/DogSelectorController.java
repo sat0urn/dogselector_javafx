@@ -1,16 +1,10 @@
 package controllers;
 
-import Behaviors_and_Realizations.IntellectBehavior;
-import Behaviors_and_Realizations.MoodBehavior;
 import SpeciesOfDogs.Dog;
-import com.example.ClientDBUtils;
 import com.example.DBUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import models.User;
 
 import java.net.URL;
@@ -18,94 +12,118 @@ import java.util.ResourceBundle;
 
 public class DogSelectorController implements Initializable {
 
+    // MENU
+    @FXML
+    private Button button_dog_selector;
+
+    @FXML
+    private Button button_messages;
+
+    @FXML
+    private Button button_logout;
+
+    @FXML
+    private Button button_dog_hair_setter;
+    //
+
     @FXML
     private Button button_menu;
 
     @FXML
-    private RadioButton rb_active;
+    private ToggleButton tb_active;
     @FXML
-    private RadioButton rb_aggressive;
+    private ToggleButton tb_aggressive;
     @FXML
-    private RadioButton rb_calm;
+    private ToggleButton tb_calm;
 
     @FXML
-    private RadioButton rb_big;
+    private ToggleButton tb_big;
     @FXML
-    private RadioButton rb_medium;
+    private ToggleButton tb_medium;
     @FXML
-    private RadioButton rb_small;
+    private ToggleButton tb_small;
 
     @FXML
-    private RadioButton rb_domestic;
+    private ToggleButton tb_domestic;
     @FXML
-    private RadioButton rb_street;
+    private ToggleButton tb_street;
 
     @FXML
-    private RadioButton rb_trained;
+    private ToggleButton tb_trained;
     @FXML
-    private RadioButton rb_no_trained;
+    private ToggleButton tb_no_trained;
 
     @FXML
     private Button button_submit;
 
     private User user;
 
-    private Dog dog;
+    private Dog dog = new Dog() {
+        @Override
+        public String displayMessage() {
+            return null;
+        }
+
+        @Override
+        public String getDogSpeecy() {
+            return null;
+        }
+    };
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        rb_active.setSelected(true);
+        button_dog_selector.setDisable(true);
+        button_messages.setDisable(true);
+        button_dog_hair_setter.setDisable(true);
+
+        tb_active.setSelected(true);
         ToggleGroup moodToggleGroup = new ToggleGroup();
-        rb_active.setToggleGroup(moodToggleGroup);
-        rb_aggressive.setToggleGroup(moodToggleGroup);
-        rb_calm.setToggleGroup(moodToggleGroup);
+        tb_active.setToggleGroup(moodToggleGroup);
+        tb_aggressive.setToggleGroup(moodToggleGroup);
+        tb_calm.setToggleGroup(moodToggleGroup);
 
-        rb_big.setSelected(true);
+        tb_big.setSelected(true);
         ToggleGroup sizeToggleGroup = new ToggleGroup();
-        rb_big.setToggleGroup(sizeToggleGroup);
-        rb_medium.setToggleGroup(sizeToggleGroup);
-        rb_small.setToggleGroup(sizeToggleGroup);
+        tb_big.setToggleGroup(sizeToggleGroup);
+        tb_medium.setToggleGroup(sizeToggleGroup);
+        tb_small.setToggleGroup(sizeToggleGroup);
 
-        rb_domestic.setSelected(true);
+        tb_domestic.setSelected(true);
         ToggleGroup lifestyleToggleGroup = new ToggleGroup();
-        rb_domestic.setToggleGroup(lifestyleToggleGroup);
-        rb_street.setToggleGroup(lifestyleToggleGroup);
+        tb_domestic.setToggleGroup(lifestyleToggleGroup);
+        tb_street.setToggleGroup(lifestyleToggleGroup);
 
-        rb_trained.setSelected(true);
+        tb_trained.setSelected(true);
         ToggleGroup intellectToggleGroup = new ToggleGroup();
-        rb_trained.setToggleGroup(intellectToggleGroup);
-        rb_no_trained.setToggleGroup(intellectToggleGroup);
+        tb_trained.setToggleGroup(intellectToggleGroup);
+        tb_no_trained.setToggleGroup(intellectToggleGroup);
 
         button_submit.setOnAction(e -> {
-            String mood = ((RadioButton) moodToggleGroup.getSelectedToggle()).getText();
-            String size = ((RadioButton) sizeToggleGroup.getSelectedToggle()).getText();
-            String lifestyle = ((RadioButton) lifestyleToggleGroup.getSelectedToggle()).getText();
-            String intellect = ((RadioButton) intellectToggleGroup.getSelectedToggle()).getText();
+            String mood, size, lifestyle, intellect;
+            try {
+                mood = ((ToggleButton) moodToggleGroup.getSelectedToggle()).getText();
+                size = ((ToggleButton) sizeToggleGroup.getSelectedToggle()).getText();
+                lifestyle = ((ToggleButton) lifestyleToggleGroup.getSelectedToggle()).getText();
+                intellect = ((ToggleButton) intellectToggleGroup.getSelectedToggle()).getText();
 
+                dog = dog.defineTypeOfDog(mood, size, lifestyle, intellect);
 
-            Dog definedDog = new Dog() {
-                @Override
-                public String displayMessage() {
-                    return null;
-                }
-
-                @Override
-                public String getDogSpeecy() {
-                    return null;
-                }
-            };
-
-            dog = definedDog.defineTypeOfDog(mood, size, lifestyle, intellect);
-
-            if (dog != null)
-                DBUtils.changeScene(e, "defined-dog.fxml", "Your selected dog", user, dog);
-
+                if (dog != null)
+                    DBUtils.changeScene(e, "example-defined-dog.fxml", "Your selected dog", user, dog);
+            } catch (Exception exception) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Select all of behaviors type!");
+                alert.show();
+            }
         });
 
         button_menu.setOnAction(e -> {
-            DBUtils.changeScene(e, "user-menu.fxml", "Menu", user, null);
+            DBUtils.changeScene(e, "example-user-menu.fxml", "Menu", user, null);
         });
 
+        button_logout.setOnAction(e -> {
+            DBUtils.changeScene(e, "example-sign-in.fxml", "Log In", null, null);
+        });
     }
 
     public void setUserInfo(User user) {

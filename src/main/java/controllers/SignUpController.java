@@ -38,7 +38,7 @@ public class SignUpController implements Initializable {
         });
 
         button_sign_in.setOnAction(e -> {
-            DBUtils.changeScene(e, "main.fxml", "Log In", null, null);
+            DBUtils.changeScene(e, "example-sign-in.fxml", "Log In", null, null);
         });
     }
 }
