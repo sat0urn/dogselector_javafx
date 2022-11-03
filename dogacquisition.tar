@@ -1,0 +1,144 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.5
+-- Dumped by pg_dump version 14.5
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: clients; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.clients (
+    dog_buyer character varying,
+    dog_speecy character varying,
+    login character varying,
+    date date,
+    description character varying,
+    cost character varying,
+    hair_type character varying
+);
+
+
+ALTER TABLE public.clients OWNER TO postgres;
+
+--
+-- Name: dog_breeds; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.dog_breeds (
+    dog_id bigint NOT NULL,
+    dog_name character varying,
+    dog_size character varying,
+    dog_mood character varying,
+    dog_lifestyle character varying,
+    dog_intellect character varying
+);
+
+
+ALTER TABLE public.dog_breeds OWNER TO postgres;
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    user_firstname character varying,
+    user_lastname character varying,
+    login character varying,
+    password character varying,
+    messages character varying[],
+    role character varying
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- Data for Name: clients; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.clients (dog_buyer, dog_speecy, login, date, description, cost, hair_type) FROM stdin;
+\.
+
+
+--
+-- Data for Name: dog_breeds; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.dog_breeds (dog_id, dog_name, dog_size, dog_mood, dog_lifestyle, dog_intellect) FROM stdin;
+29	Boston Terrier	Small	Calm	Street	Trained
+5	Ghanaian	Big	Active	Street	NoTrained
+6	Bullmastiff	Big	Calm	Street	NoTrained
+7	Neapolitan Mastiff	Big	Calm	Domestic	Trained
+8	Great Dane	Big	Calm	Domestic	NoTrained
+9	Doberman	Big	Aggressive	Domestic	Trained
+10	Tosa Inu	Big	Aggressive	Domestic	NoTrained
+11	German Shephard	Big	Aggressive	Street	Trained
+30	Pooch	Small	Calm	Street	NoTrained
+31	Pomeranian	Small	Active	Domestic	NoTrained
+32	Beagle	Small	Active	Street	Trained
+33	Norwegian Lundehund	Small	Active	Street	NoTrained
+12	Caucasian Shephard	Big	Aggressive	Street	NoTrained
+13	Puddle	Medium	Calm	Domestic	NoTrained
+14	Basset Hound	Medium	Calm	Domestic	Trained
+15	Norwegian Elkhound	Medium	Calm	Street	NoTrained
+16	Chow Chow	Medium	Calm	Street	Trained
+17	Golden Retriever	Medium	Active	Domestic	NoTrained
+18	Dalmatian	Medium	Active	Domestic	Trained
+19	Boxer	Medium	Aggressive	Street	NoTrained
+20	Bulldog	Medium	Aggressive	Street	Trained
+21	Spaniel	Medium	Active	Street	NoTrained
+22	German Shorthaired Pointer	Medium	Active	Street	Trained
+23	Irish Water Spaniel	Medium	Aggressive	Domestic	NoTrained
+24	Labrador	Medium	Aggressive	Domestic	Trained
+25	Pug	Small	Calm	Domestic	NoTrained
+26	Chiwawa	Small	Aggressive	Domestic	Trained
+27	Tax	Small	Active	Domestic	Trained
+28	Corgi	Small	Calm	Domestic	Trained
+1	Husky	Big	Active	Domestic	Trained
+2	Samoyed	Big	Active	Domestic	NoTrained
+3	Akita Inu	Big	Calm	Street	Trained
+4	Tibet Mastiff	Big	Active	Street	Trained
+34	Yorkshire Terrier	Small	Aggressive	Domestic	NoTrained
+35	Mixed Breed #1	Small	Aggressive	Street	Trained
+36	Mixed Breed #2	Small	Aggressive	Street	NoTrained
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (user_firstname, user_lastname, login, password, messages, role) FROM stdin;
+ADMIN	ADMIN	admin	admin	\N	ADMIN
+\.
+
+
+--
+-- Name: dog_breeds dog_breeds_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dog_breeds
+    ADD CONSTRAINT dog_breeds_pkey PRIMARY KEY (dog_id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
